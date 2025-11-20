@@ -1,7 +1,7 @@
 # Dockerfile - uses pre-built binary
 # Build the binary first with: make build-release
 
-FROM alpine:latest
+FROM alpine:3.22.2
 
 RUN apk --no-cache add ca-certificates
 
