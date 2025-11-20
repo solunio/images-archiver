@@ -5,12 +5,10 @@ FROM alpine:latest
 
 RUN apk --no-cache add ca-certificates
 
-WORKDIR /app
-
 # Copy pre-built binary (expects 'images-archiver' in build context)
-COPY images-archiver* /app/images-archiver
+COPY images-archiver* /usr/bin/images-archiver
 
 # Ensure binary is executable
-RUN chmod +x /app/images-archiver
+RUN chmod +x /usr/bin/images-archiver
 
-ENTRYPOINT ["/app/images-archiver"]
+ENTRYPOINT ["/usr/bin/images-archiver"]
