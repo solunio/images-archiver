@@ -1,0 +1,52 @@
+version: "2"
+run:
+  go: "1.25"
+  build-tags:
+    - exclude_graphdriver_btrfs
+    - containers_image_openpgp
+linters:
+  enable:
+    - gocritic
+    - gosec
+    - misspell
+    - revive
+    - unconvert
+  settings:
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
+    govet:
+      enable-all: true
+    revive:
+      severity: warning
+      rules:
+        - name: exported
+          severity: warning
+          disabled: false
+  exclusions:
+    generated: lax
+    paths:
+      - third_party/.*
+      - builtin/.*
+      - examples/.*
+    rules:
+      - linters:
+          - errcheck
+          - gosec
+        path: _test\.go
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    gofmt:
+      simplify: true
+  exclusions:
+    generated: lax
+    paths:
+      - third_party/.*
+      - builtin/.*
+      - examples/.*
